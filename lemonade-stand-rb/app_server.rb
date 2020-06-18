@@ -17,7 +17,7 @@ class AppServer < Sinatra::Base
     content_type :json
     {
       ads: 2,
-      lemonade: true
+      lemonade: "green"
     }.to_json
   end
 

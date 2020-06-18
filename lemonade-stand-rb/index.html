@@ -16714,28 +16714,35 @@ function showSigns(number) {
 
 }
 
-function toggleLemonade() {
-  drink = ["#path52795", "#path53221-9-9-9-1-1", "#path53221-9-9-9-1-1-9", "#path53221-9-9-9-1-1-9-8", "#path53221-9-9-9-1-1-9-8-1", "#path53221-9-9-9-1-1-9-8-1-2"]
-  for (i=0; i < drink.length; i++) {
-    document.querySelector(drink[i]).style.fill = "rgb(242, 214, 94)" // yellow
-    document.querySelector(drink[i]).style.fill = "rgb(0, 214, 0)" // green
-    document.querySelector(drink[i]).style.fill = "rgb(214, 0, 0)" // red
-  }
+function showLemonade(color) {
 
-  if (document.querySelector("#lemonade_pitcher").style.display == "none") {
-    document.querySelector("#lemonade_pitcher").style.display = "inline"
-
-    for(i = 1; i <= 5; i++) {
-      document.querySelector("#glass" + i).style.display = "inline"
-    }
-  } else {
     document.querySelector("#lemonade_pitcher").style.display = "none"
 
     for(i = 1; i <= 5; i++) {
       document.querySelector("#glass" + i).style.display = "none"
     }
-  }
+
+    drink = ["#path52795", "#path53221-9-9-9-1-1", "#path53221-9-9-9-1-1-9", "#path53221-9-9-9-1-1-9-8", "#path53221-9-9-9-1-1-9-8-1", "#path53221-9-9-9-1-1-9-8-1-2"]
+    for (i=0; i < drink.length; i++) {
+
+      if (color == "yellow") {
+        document.querySelector(drink[i]).style.fill = "rgb(242, 214, 94)" // yellow
+
+      } else if (color == "green") {
+        document.querySelector(drink[i]).style.fill = "rgb(0, 214, 0)" // green
+      }
+    }
+
+    if (color == "yellow" || color ==  "green") {
+
+        document.querySelector("#lemonade_pitcher").style.display = "inline"
+        for(i = 1; i <= 5; i++) {
+          document.querySelector("#glass" + i).style.display = "inline"
+        }
+    }
+
 }
+
 
 function pullAPI() {
   var request = new XMLHttpRequest()
@@ -16749,7 +16756,7 @@ function pullAPI() {
 
       console.info("API response", data)
       showSigns(data.ads)
-      toggleLemonade()
+      showLemonade(data.lemonade)
       showCustomers(8)
     } else {
       console.log('Error accessing API')
