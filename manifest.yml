@@ -10,7 +10,7 @@ applications:
     ADDS_JS_PORT: 8082
   stack: cflinuxfs3
   sidecars:
-  - name: adds-js
+  - name: sidecar-js
     process_types:
     - web
     command: node sidecar.js

@@ -11,7 +11,7 @@ async function showCustomers(number) {
   for(i = 1; i <= number; i++) {
     try {
       document.querySelector("#customer" + i).style.display = "inline"
-      await sleep(300)
+      // await sleep(300)
     }
     catch(err) {
       console.log("showCustomers", err)
@@ -82,7 +82,7 @@ function pullAPI() {
       console.info("API response", data)
       showSigns(data.ads)
       showLemonade(data.lemonade)
-      showCustomers(8)
+      showCustomers(data.ads)
     } else {
       console.log('Error accessing API')
     }
