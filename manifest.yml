@@ -1,5 +1,5 @@
 applications:
-- name: lemonade-stand
+- name: lemon
   buildpacks:
    - nodejs_buildpack
    - ruby_buildpack
@@ -13,4 +13,15 @@ applications:
   - name: adds-js
     process_types:
     - web
-    command: 'node sidecar.js'
+    command: node sidecar.js
+  processes:
+  - type: web
+    command: bundle exec rackup config.ru -p $PORT
+    instances: 1
+    disk_quota: 256M
+    memory: 256M
+  - type: worker
+    command: node worker.js
+    instances: 1
+    disk_quota: 256M
+    memory: 256M
