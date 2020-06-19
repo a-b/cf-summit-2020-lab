@@ -1,0 +1,22 @@
+{
+  "name": "cf-summit-2020-lab-worker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "worker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-b/cf-summit-2020-lab.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/a-b/cf-summit-2020-lab/issues"
+  },
+  "homepage": "https://github.com/a-b/cf-summit-2020-lab#readme",
+  "dependencies": {
+    "uuid": "^8.1.0"
+  }
+}

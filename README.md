@@ -1,1 +1,1 @@
-# cf-summit-2020-lab
+# Sample Lemonade Stand App

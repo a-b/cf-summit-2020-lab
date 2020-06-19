@@ -1,0 +1,14 @@
+cf curl "/v3/routes/e859cdad-f380-4466-bf1d-5f10aaeb5ac3/destinations" -v \
+  -X POST \
+  -d '{
+    "destinations": [
+            {
+        "app": {
+          "guid": "abb6828d-c73e-4a1c-9b1a-d5384d584a47",
+          "process": {
+            "type": "worker"
+          }
+        }
+      }
+    ]
+  }'
