@@ -2,31 +2,19 @@ ENV['RACK_ENV'] ||= 'development'
 
 require 'rubygems'
 require 'sinatra/base'
-# require 'sinatra/reloader'
 require 'json'
-require 'net/http'
-# require 'logger'
-require 'set'
+require 'socket'
 
 Bundler.require :default, ENV['RACK_ENV'].to_sym
 
 class AppServer < Sinatra::Base
 
-  # set :logger, Logger.new(STDOUT)
-
-  # configure :development do
-  #   register Sinatra::Reloader
-  # end
-
-  # also_reload 'app_server.rb'
-  # after_reload do
-  #   puts 'reloaded'
-  # end
-
   set :public_folder, File.dirname(__FILE__) + '/static'
 
   workers = {}
   WORKER_TTL = 10
+
+  SIDECAR_FILE_NAME = "/tmp/sidecar.txt"
 
   get '/' do
     send_file File.join(settings.public_folder, 'index.html')
@@ -38,18 +26,18 @@ class AppServer < Sinatra::Base
 
     puts "API Registered Workers: #{workers}"
 
+    lemonade = ""
+    if File.file?(SIDECAR_FILE_NAME)
+      sidecar_file = File.open(SIDECAR_FILE_NAME)
+      lemonade = sidecar_file.read.strip
+    end
 
     content_type :json
     {
       ads: workers.count,
-      lemonade: "green"
+      lemonade: lemonade
 
     }.to_json
-
-    # puts "Sending a request to the adds-js sidecar at localhost:ENV['ADDS_JS_PORT']"
-    # response = Net::HTTP.get('localhost', '/', ENV['ADDS_JS_PORT'])
-    # puts "Received #{response} from the adds-js sidecar"
-    # response
   end
 
   get '/register_worker' do
