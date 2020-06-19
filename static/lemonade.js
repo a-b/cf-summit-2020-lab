@@ -68,6 +68,15 @@ function showLemonade(color) {
 
 }
 
+function siteOnline(online) {
+  if (online) {
+    document.querySelector("#site-up").style.display = "inline"
+    document.querySelector("#site-down").style.display = "none"
+  } else {
+    document.querySelector("#site-up").style.display = "none"
+    document.querySelector("#site-down").style.display = "inline"
+  }
+}
 
 function pullAPI() {
   var request = new XMLHttpRequest()
@@ -83,8 +92,10 @@ function pullAPI() {
       showSigns(data.ads)
       showLemonade(data.lemonade)
       showCustomers(data.ads)
+      siteOnline(true)
     } else {
       console.log('Error accessing API')
+      siteOnline(false)
     }
   }
 
