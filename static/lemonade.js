@@ -3,7 +3,10 @@ function sleep(ms) {
 }
 
 async function showCustomers(number) {
-  for(i = 1; i <= 8; i++) {
+  if(number > 0){
+    await sleep(5000)
+  }
+   for(i = 1; i <= 8; i++) {
     document.querySelector("#customer" + i).style.display = "none"
   }
 
@@ -21,7 +24,12 @@ async function showCustomers(number) {
 }
 
 function showSigns(number) {
-  document.querySelector("#city_map").style.display = "inline"
+  if(number > 0) {
+    document.querySelector("#city_map").style.display = "inline"
+  } else {
+    document.querySelector("#city_map").style.display = "none"
+  }
+
   document.querySelector("#lemonade_signs").style.display = "inline"
 
   for(i = 1; i <= 8; i++) {
