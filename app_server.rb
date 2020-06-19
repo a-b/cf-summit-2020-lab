@@ -14,7 +14,7 @@ class AppServer < Sinatra::Base
   workers = {}
   WORKER_TTL = 10
 
-  SIDECAR_FILE_NAME = "/tmp/sidecar.txt"
+  SIDECAR_FILE_NAME = ENV['SIDECAR_FILE_NAME'] || "/tmp/sidecar.txt"
 
   get '/' do
     send_file File.join(settings.public_folder, 'index.html')

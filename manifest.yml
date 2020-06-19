@@ -3,25 +3,27 @@ applications:
   buildpacks:
    - nodejs_buildpack
    - ruby_buildpack
+   - python_buildpack
   disk_quota: 1G
   instances: 1
   memory: 256M
   env:
     ADDS_JS_PORT: 8082
+    SIDECAR_FILE_NAME: /tmp/sidecar.txt
   stack: cflinuxfs3
   sidecars:
   - name: sidecar-js
     process_types:
     - web
-    command: node sidecar.js
+    command: python sidecar.py
   processes:
   - type: web
     command: bundle exec rackup config.ru -p $PORT
     instances: 1
-    disk_quota: 256M
+    disk_quota: 512M
     memory: 128M
   - type: worker
     command: node worker.js
     instances: 2
-    disk_quota: 256M
+    disk_quota: 512M
     memory: 128M
