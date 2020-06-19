@@ -41,30 +41,30 @@ function showSigns(number) {
 
 function showLemonade(color) {
 
-    document.querySelector("#lemonade_pitcher").style.display = "none"
+  document.querySelector("#lemonade_pitcher").style.display = "none"
 
+  for(i = 1; i <= 5; i++) {
+    document.querySelector("#glass" + i).style.display = "none"
+  }
+
+  drink = ["#path52795", "#path53221-9-9-9-1-1", "#path53221-9-9-9-1-1-9", "#path53221-9-9-9-1-1-9-8", "#path53221-9-9-9-1-1-9-8-1", "#path53221-9-9-9-1-1-9-8-1-2"]
+  for (i=0; i < drink.length; i++) {
+
+    if (color == "yellow") {
+      document.querySelector(drink[i]).style.fill = "rgb(242, 214, 94)" // yellow
+
+    } else if (color == "green") {
+      document.querySelector(drink[i]).style.fill = "rgb(0, 214, 0)" // green
+    }
+  }
+
+  if (color == "yellow" || color ==  "green") {
+
+    document.querySelector("#lemonade_pitcher").style.display = "inline"
     for(i = 1; i <= 5; i++) {
-      document.querySelector("#glass" + i).style.display = "none"
+      document.querySelector("#glass" + i).style.display = "inline"
     }
-
-    drink = ["#path52795", "#path53221-9-9-9-1-1", "#path53221-9-9-9-1-1-9", "#path53221-9-9-9-1-1-9-8", "#path53221-9-9-9-1-1-9-8-1", "#path53221-9-9-9-1-1-9-8-1-2"]
-    for (i=0; i < drink.length; i++) {
-
-      if (color == "yellow") {
-        document.querySelector(drink[i]).style.fill = "rgb(242, 214, 94)" // yellow
-
-      } else if (color == "green") {
-        document.querySelector(drink[i]).style.fill = "rgb(0, 214, 0)" // green
-      }
-    }
-
-    if (color == "yellow" || color ==  "green") {
-
-        document.querySelector("#lemonade_pitcher").style.display = "inline"
-        for(i = 1; i <= 5; i++) {
-          document.querySelector("#glass" + i).style.display = "inline"
-        }
-    }
+  }
 
 }
 
