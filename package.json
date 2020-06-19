@@ -1,0 +1,12 @@
+{
+  "name": "adds-js",
+  "version": "1.0.0",
+  "description": "Adds server",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "engines": {
+    "node": "10.20.1"
+  }
+}
