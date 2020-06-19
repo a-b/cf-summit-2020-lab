@@ -1,5 +1,8 @@
 applications:
 - name: lemonade-stand
+  buildpacks:
+   - nodejs_buildpack
+   - ruby_buildpack
   disk_quota: 1G
   instances: 1
   memory: 256M
@@ -10,4 +13,4 @@ applications:
   - name: adds-js
     process_types:
     - web
-    command: 'node server.js'
+    command: 'node sidecar.js'

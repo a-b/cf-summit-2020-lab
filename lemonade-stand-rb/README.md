@@ -1,1 +1,0 @@
-# Sample Lemonade Stand App

@@ -1,10 +1,11 @@
 {
-  "name": "adds-js",
+  "name": "sidecar-js",
   "version": "1.0.0",
-  "description": "Adds server",
-  "main": "server.js",
+  "description": "Sidecar",
+  "main": "sidecar.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "uuid": "^8.1.0"
   },
   "engines": {
     "node": "10.20.1"

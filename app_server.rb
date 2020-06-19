@@ -4,7 +4,6 @@ require 'rubygems'
 require 'sinatra/base'
 require 'json'
 require 'net/http'
-# require 'typhoeus'
 
 Bundler.require :default, ENV['RACK_ENV'].to_sym
 
@@ -16,7 +15,6 @@ class AppServer < Sinatra::Base
   get '/api' do
     puts "Sending a request to the adds-js sidecar at localhost:ENV['ADDS_JS_PORT']"
     response = Net::HTTP.get('localhost', '/', ENV['ADDS_JS_PORT'])
-    # response = Typhoeus.get("localhost:S_JS_PORT']}")
     puts "Received #{response} from the adds-js sidecar"
     response
   end
