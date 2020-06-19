@@ -1,8 +1,4 @@
 {
-  "name": "sidecar-js",
-  "version": "1.0.0",
-  "description": "Sidecar",
-  "main": "sidecar.js",
   "dependencies": {
     "express": "^4.17.1",
     "uuid": "^8.1.0"

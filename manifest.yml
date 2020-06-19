@@ -19,9 +19,9 @@ applications:
     command: bundle exec rackup config.ru -p $PORT
     instances: 1
     disk_quota: 256M
-    memory: 256M
+    memory: 128M
   - type: worker
     command: node worker.js
-    instances: 1
+    instances: 2
     disk_quota: 256M
-    memory: 256M
+    memory: 128M
