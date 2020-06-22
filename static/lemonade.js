@@ -3,21 +3,26 @@ function sleep(ms) {
 }
 
 async function showCustomers(number) {
-  if(number > 0){
-    await sleep(5000)
-  }
-   for(i = 1; i <= 8; i++) {
+  //if(number > 0){
+  //  await sleep(5000)
+  //}
+  for(i = 1; i <= 8; i++) {
     document.querySelector("#customer" + i).style.display = "none"
   }
 
-
-  for(i = 1; i <= number; i++) {
-    try {
-      document.querySelector("#customer" + i).style.display = "inline"
-      // await sleep(300)
-    }
-    catch(err) {
-      console.log("showCustomers", err)
+  if(number > 0){
+    rate=60000/number
+    for(i = 1; i <= 8; i++) {
+      await sleep(rate)
+      if(document.querySelector("#customer" + i).style.display == "none"){
+        try {
+          document.querySelector("#customer" + i).style.display = "inline"
+          // await sleep(300)
+        }
+        catch(err) {
+          console.log("showCustomers", err)
+        }
+      }
     }
   }
 
@@ -62,7 +67,7 @@ function showLemonade(color) {
       document.querySelector(drink[i]).style.fill = "rgb(242, 214, 94)" // yellow
 
     } else if (color == "green") {
-      document.querySelector(drink[i]).style.fill = "rgb(0, 214, 0)" // green
+      document.querySelector(drink[i]).style.fill = "rgb(135, 112, 65)" // green
     }
   }
 
