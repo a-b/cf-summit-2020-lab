@@ -1,27 +1,29 @@
+lemonadeColor=""
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function showCustomers(number) {
-  //if(number > 0){
-  //  await sleep(5000)
-  //}
+  if(number > 0){
+    await sleep(5000)
+  }
   for(i = 1; i <= 8; i++) {
     document.querySelector("#customer" + i).style.display = "none"
+    document.querySelector("#sad-customer-face-" + i).style.display = "none"
   }
 
-  if(number > 0){
-    rate=60000/number
-    for(i = 1; i <= 8; i++) {
-      await sleep(rate)
-      if(document.querySelector("#customer" + i).style.display == "none"){
-        try {
-          document.querySelector("#customer" + i).style.display = "inline"
-          // await sleep(300)
+
+  for(i = 1; i <= number; i++) {
+    if(number >= 2){
+      try {
+        document.querySelector("#customer" + i).style.display = "inline"
+        if(lemonadeColor == "new-recipe"){
+          document.querySelector("#sad-customer-face-" + i).style.display = "inline"
         }
-        catch(err) {
-          console.log("showCustomers", err)
-        }
+      }
+      catch(err) {
+        console.log("showCustomers", err)
       }
     }
   }
@@ -53,7 +55,7 @@ function showSigns(number) {
 }
 
 function showLemonade(color) {
-
+  lemonadeColor = color
   document.querySelector("#lemonade_pitcher").style.display = "none"
 
   for(i = 1; i <= 5; i++) {
@@ -63,15 +65,15 @@ function showLemonade(color) {
   drink = ["#path52795", "#path53221-9-9-9-1-1", "#path53221-9-9-9-1-1-9", "#path53221-9-9-9-1-1-9-8", "#path53221-9-9-9-1-1-9-8-1", "#path53221-9-9-9-1-1-9-8-1-2"]
   for (i=0; i < drink.length; i++) {
 
-    if (color == "yellow") {
+    if (color == "original-recipe") {
       document.querySelector(drink[i]).style.fill = "rgb(242, 214, 94)" // yellow
 
-    } else if (color == "green") {
-      document.querySelector(drink[i]).style.fill = "rgb(135, 112, 65)" // green
+    } else if (color == "new-recipe") {
+      document.querySelector(drink[i]).style.fill = "rgb(113, 115, 76)" // green
     }
   }
 
-  if (color == "yellow" || color ==  "green") {
+  if (color == "original-recipe" || color ==  "new-recipe") {
 
     document.querySelector("#lemonade_pitcher").style.display = "inline"
     for(i = 1; i <= 5; i++) {

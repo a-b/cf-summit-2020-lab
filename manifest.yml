@@ -21,6 +21,6 @@ applications:
     memory: 128M
   - type: worker
     command: node worker.js
-    instances: 0
+    instances: 3
     disk_quota: 512M
     memory: 128M
