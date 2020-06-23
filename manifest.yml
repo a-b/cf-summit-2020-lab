@@ -1,5 +1,5 @@
 applications:
-- name: lemon-999
+- name: squeeze-{put!your@number}
   buildpacks:
    - nodejs_buildpack
    - ruby_buildpack
@@ -21,6 +21,6 @@ applications:
     memory: 128M
   - type: worker
     command: node worker.js
-    instances: 3
+    instances: 0
     disk_quota: 512M
     memory: 128M
