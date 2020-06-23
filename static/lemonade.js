@@ -52,11 +52,13 @@ function showSigns(number) {
   }
 
   for(i = 1; i <= number; i++) {
-    try {
-      document.querySelector("#lemonade_sign" + i).style.display = "inline"
-    }
-    catch(err) {
-      console.log("showSigns", err)
+    if(i <= 8){ 
+      try {
+        document.querySelector("#lemonade_sign" + i).style.display = "inline"
+      }
+      catch(err) {
+        console.log("showSigns", err)
+      }
     }
   }
   currentNumber = number
@@ -96,23 +98,29 @@ async function showCustomers(number) {
       default:
         minCount=2
     }
+    if((counter - lastCount) >= minCount){
+      //window.alert(counter + " " + lastCount + " " + minCount)
+      for(i = 1; i <= number; i++) {
+        //await sleep(1000)
+        try {
+          if(i <= 8){
+            document.querySelector("#customer" + i).style.display = "inline"
+            if(lemonadeColor == "new-recipe"){
+              document.querySelector("#sad-customer-face-" + i).style.display = "inline"
+            }
+          }
+        }
+        catch(err) {
+          console.log("showCustomers", err)
+        }
+      }
+    }
   } else if (number < lastActionNumber){
     //remove the extra customers right away
-  }
-
-  for(i = 1; i <= 8; i++) {
-    document.querySelector("#customer" + i).style.display = "none"
-    document.querySelector("#sad-customer-face-" + i).style.display = "none"
-  }
-
-
-  for(i = 1; i <= number; i++) {
-    if(number >= 2){
+    for(i = currentNumber; i > number; i--) {
       try {
-        document.querySelector("#customer" + i).style.display = "inline"
-        if(lemonadeColor == "new-recipe"){
-          document.querySelector("#sad-customer-face-" + i).style.display = "inline"
-        }
+        document.querySelector("#customer" + i).style.display = "none"
+        document.querySelector("#sad-customer-face-" + i).style.display = "none"
       }
       catch(err) {
         console.log("showCustomers", err)
