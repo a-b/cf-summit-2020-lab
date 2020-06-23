@@ -4,6 +4,7 @@ counter=0
 currentNumber=0
 lastActionNumber=0
 minCount=0
+latestNumber=0
 
 
 function sleep(ms) {
@@ -52,7 +53,7 @@ function showSigns(number) {
   }
 
   for(i = 1; i <= number; i++) {
-    if(i <= 8){ 
+    if(i <= 8){
       try {
         document.querySelector("#lemonade_sign" + i).style.display = "inline"
       }
@@ -61,7 +62,7 @@ function showSigns(number) {
       }
     }
   }
-  currentNumber = number
+  //currentNumber = number
 }
 
 async function showCustomers(number) {
@@ -98,37 +99,52 @@ async function showCustomers(number) {
       default:
         minCount=2
     }
+    //window.alert("ADDING ==> number: " + number + " lastActionNumber: " + lastActionNumber + " latestNumber: " + latestNumber + " counter: " + counter + " lastCount: " + lastCount + " minCount: " + minCount);
     if((counter - lastCount) >= minCount){
-      //window.alert(counter + " " + lastCount + " " + minCount)
-      for(i = 1; i <= number; i++) {
-        //await sleep(1000)
-        try {
-          if(i <= 8){
-            document.querySelector("#customer" + i).style.display = "inline"
+      for(j = 1; j < number; j++) {
+        await sleep(3000)
+          if(j <= 8){
+            try {
+              document.querySelector("#customer" + j).style.display = "inline"
+            }
+            catch(err) {
+              console.log("showCustomers", err)
+            }
             if(lemonadeColor == "new-recipe"){
-              document.querySelector("#sad-customer-face-" + i).style.display = "inline"
+              try {
+                document.querySelector("#sad-customer-face-" + j).style.display = "inline"
+              }
+              catch(err) {
+                console.log("showCustomers", err)
+              }
+
             }
           }
-        }
-        catch(err) {
-          console.log("showCustomers", err)
-        }
-      }
+          lastCount = counter
+       }
+      lastActionNumber = number
     }
-  } else if (number < lastActionNumber){
-    //remove the extra customers right away
-    for(i = currentNumber; i > number; i--) {
+  } else if (latestNumber < lastActionNumber){
+    tot = lastActionNumber
+    for(k = tot; k > latestNumber; k--) {
+    //  window.alert("k: " + k + " -- lastActionNumber: " + lastActionNumber + " -- latestNumber: " + latestNumber + " -- number: " + number)
+      //await sleep(2000)
       try {
-        document.querySelector("#customer" + i).style.display = "none"
-        document.querySelector("#sad-customer-face-" + i).style.display = "none"
+        document.querySelector("#customer" + k).style.display = "none"
+      }
+      catch(err) {
+        console.log("showCustomers", err)
+      }
+      try {
+        document.querySelector("#sad-customer-face-" + k).style.display = "none"
       }
       catch(err) {
         console.log("showCustomers", err)
       }
     }
+    lastCount = counter
+    lastActionNumber = number
   }
-  lastCount = counter
-  lastActionNumber = number
 }
 
 function siteOnline(online) {
@@ -144,7 +160,6 @@ function siteOnline(online) {
 function pullAPI() {
   var request = new XMLHttpRequest()
 
-
   request.open('GET', '/api', true)
   request.onload = function() {
 
@@ -154,7 +169,7 @@ function pullAPI() {
       console.info("API response", data)
       latestNumber = data.ads
       showLemonade(data.lemonade)
-      if(currentNumber != latestNumber){
+      if(lastActionNumber != latestNumber){
         showSigns(data.ads)
         showCustomers(data.ads)
       } else {
