@@ -1,4 +1,8 @@
 lemonadeColor=""
+lastCount=0
+counter=0
+currentNumber=0
+
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -51,7 +55,7 @@ function showSigns(number) {
       console.log("showSigns", err)
     }
   }
-
+  currentNumber = number
 }
 
 function showLemonade(color) {
@@ -104,9 +108,13 @@ function pullAPI() {
       var data = JSON.parse(this.response)
 
       console.info("API response", data)
-      showSigns(data.ads)
+      if(currentNumber != data.ads){
+        showSigns(data.ads)
+        showCustomers(data.ads)
+      } else {
+        lastCount = counter
+      }
       showLemonade(data.lemonade)
-      showCustomers(data.ads)
       siteOnline(true)
     } else {
       console.log('Error accessing API')
@@ -120,5 +128,6 @@ function pullAPI() {
 window.onload = function() {
   setInterval(function() {
     pullAPI()
+    counter++
   }, 2000);
 }
