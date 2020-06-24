@@ -2,25 +2,34 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function showCustomers(number) {
+async function showCustomers(number, recipe) {
   if(number > 0){
     await sleep(5000)
   }
    for(i = 1; i <= 8; i++) {
     document.querySelector("#customer" + i).style.display = "none"
+    document.querySelector("#sad-customer-face-" + i).style.display = "none"
   }
 
 
   for(i = 1; i <= number; i++) {
-    try {
-      document.querySelector("#customer" + i).style.display = "inline"
-      // await sleep(300)
-    }
-    catch(err) {
-      console.log("showCustomers", err)
+    if(i<=8){
+      try {
+        document.querySelector("#customer" + i).style.display = "inline"
+      }
+      catch(err) {
+        console.log("showCustomers", err)
+      }
+      if(recipe == "lemunique"){
+        try {
+          document.querySelector("#sad-customer-face-" + i).style.display = "inline"
+        }
+        catch(err) {
+          console.log("showCustomers", err)
+        }
+      }
     }
   }
-
 }
 
 function showSigns(number) {
@@ -47,7 +56,7 @@ function showSigns(number) {
 
 }
 
-function showLemonade(color) {
+function showLemonade(recipe) {
 
   document.querySelector("#lemonade_pitcher").style.display = "none"
 
@@ -58,15 +67,14 @@ function showLemonade(color) {
   drink = ["#path52795", "#path53221-9-9-9-1-1", "#path53221-9-9-9-1-1-9", "#path53221-9-9-9-1-1-9-8", "#path53221-9-9-9-1-1-9-8-1", "#path53221-9-9-9-1-1-9-8-1-2"]
   for (i=0; i < drink.length; i++) {
 
-    if (color == "yellow") {
+    if (recipe == "originalRecipe") {
       document.querySelector(drink[i]).style.fill = "rgb(242, 214, 94)" // yellow
-
-    } else if (color == "green") {
-      document.querySelector(drink[i]).style.fill = "rgb(0, 214, 0)" // green
+    } else if (recipe == "lemunique") {
+      document.querySelector(drink[i]).style.fill = "rgb(154, 174, 7)" // puke green
     }
   }
 
-  if (color == "yellow" || color ==  "green") {
+  if (recipe == "originalRecipe" || recipe ==  "lemunique") {
 
     document.querySelector("#lemonade_pitcher").style.display = "inline"
     for(i = 1; i <= 5; i++) {
@@ -99,7 +107,7 @@ function pullAPI() {
       console.info("API response", data)
       showSigns(data.ads)
       showLemonade(data.lemonade)
-      showCustomers(data.ads)
+      showCustomers(data.ads, data.lemonade)
       siteOnline(true)
     } else {
       console.log('Error accessing API')

@@ -1,5 +1,5 @@
 applications:
-- name: lemon-{put!your@number}
+- name: squeeze-{put!your@number}
   buildpacks:
    - nodejs_buildpack
    - ruby_buildpack
