@@ -1,5 +1,5 @@
 applications:
-- name: squeeze-{put!your@number}
+- name: squeeze
   buildpacks:
    - nodejs_buildpack
    - ruby_buildpack

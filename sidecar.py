@@ -8,7 +8,7 @@ while True:
     f = open(sidecar_file_name, "w")
     #f.write("originalRecipe")
     #f.write("lemunique")
-    f.write("")
+    #f.write("")
 
     print("Sidecar output: ", f)
     f.close()
